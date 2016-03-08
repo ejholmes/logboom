@@ -22,7 +22,7 @@ Log lines from a file randomly for 10 minutes:
 $ cat /var/log/syslog | logboom -d 10m
 ```
 
-## Docker Usage
+### Docker
 
 You can run logboom with Docker as well:
 
@@ -30,7 +30,7 @@ You can run logboom with Docker as well:
 $ echo "This is the message that will be logged" | docker run -i ejholmes/logboom
 ```
 
-## Full Usage
+### Full Usage
 
 ```console
 $ logboom -h
