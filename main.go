@@ -24,6 +24,10 @@ func main() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
+	if len(lines) == 0 {
+		flag.Usage()
+		os.Exit(1)
+	}
 
 	var timeout <-chan time.Time
 	if *d != time.Duration(0) {
