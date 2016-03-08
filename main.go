@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-var d = flag.Duration("d", time.Second, "How long to log for.")
+var d = flag.Duration("d", time.Duration(0), "How long to log for.")
 var r = flag.Int("r", 1000, "The number of lines per second to log.")
 
 func main() {
@@ -25,7 +25,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	timeout := time.After(*d)
+	var timeout <-chan time.Time
+	if *d != time.Duration(0) {
+		timeout = time.After(*d)
+	} else {
+		// This will block forever.
+		timeout = make(<-chan time.Time)
+	}
+
 	ticker := time.Tick(time.Duration(int(time.Second) / *r))
 
 	for {

@@ -10,14 +10,25 @@ $ go get -u github.com/ejholmes/logboom
 
 ## Usage
 
-Log 1000 messages per second for 10 minutes:
+Log 1000 messages per second indefinitely:
 
 ```console
-$ echo "This is the message that will be logged" | logboom -d 10m -r 1000
+$ echo "This is the message that will be logged" | logboom
 ```
 
-Log lines from a file randomly:
+Log lines from a file randomly for 10 minutes:
 
 ```console
-$ cat /var/log/syslog | logboom -d 10m -r 1000
+$ cat /var/log/syslog | logboom -d 10m
+```
+
+## Full Usage
+
+```console
+$ logboom -h
+Usage of logboom:
+  -d duration
+      How long to log for.
+  -r int
+      The number of lines per second to log. (default 1000)
 ```
