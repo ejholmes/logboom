@@ -27,7 +27,7 @@ $ cat /var/log/syslog | logboom -d 10m
 You can run logboom with Docker as well:
 
 ```console
-$ echo "This is the message that will be logged" | docker run -i ejholmes/logboom
+$ echo "This is the message that will be logged" | docker run -i -a stdin ejholmes/logboom
 ```
 
 ### Full Usage
