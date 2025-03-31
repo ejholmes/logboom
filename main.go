@@ -7,17 +7,26 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
 var d = flag.Duration("d", time.Duration(0), "How long to log for.")
 var r = flag.Int("r", 1000, "The number of lines per second to log.")
+var m = flag.String("m", "", "The message to log.")
 
 func main() {
 	flag.Parse()
 
+	var rd io.Reader
+	if *m != "" {
+		rd = strings.NewReader(*m)
+	} else {
+		rd = os.Stdin
+	}
+
 	var lines []string
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(rd)
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text()+"\n")
 	}
